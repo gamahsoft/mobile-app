@@ -1,43 +1,10 @@
-import { ActivityIndicator, FlatList } from 'react-native';
-// import ProductListItem from '../components/ProductListItem';
-// import { useBreakpointValue } from '@/components/ui/utils/use-break-point-value';
-// import { listProducts } from '@/api/products';
-// import { useQuery } from '@tanstack/react-query';
-// import { error } from 'react-native-svg/lib/typescript/xml';
-// import { Text } from '@/components/ui/text';
+import {Text, View} from 'react-native'
 
 export default function HomeScreen() {
-//   const { data, isLoading, error } = useQuery({
-//     queryKey: ['products'],
-//     queryFn: listProducts,
-//   });
-
-//   const numColumns = useBreakpointValue({
-//     default: 2,
-//     sm: 3,
-//     xl: 4,
-//   });
-
-//   if (isLoading) {
-//     return <ActivityIndicator />;
-//   }
-
-//   if (err) {
-//     return <Text>Error fetching products</Text>;
-//   }
-
 return (
-    <>
-    {/* <Text text-red-600 text-3xl>Help me God</Text> */}
-    <FlatList
-    //   key={numColumns}
-    //   data={data.splice(0, 10)}
-    //   numColumns={numColumns}
-    //   contentContainerClassName="gap-2 max-w-[960px] mx-auto w-full"
-    //   columnWrapperClassName="gap-2"
-    //   renderItem={({ item }) => <ProductListItem product={item} />}
-      renderItem={() => "Help me God" }
-    />
-    </>
+    <View>
+        <Text className='text-red-700 text-3xl'>Help me God</Text>
+    </View>
+    
   );
 }
