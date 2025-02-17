@@ -1,10 +1,13 @@
-import {Text, View} from 'react-native'
+import {FlatList} from 'react-native'
+
+import products from '../assets/products.json'
+import ProductListItem from '@/components/ProductListItems';
 
 export default function HomeScreen() {
 return (
-    <View>
-        <Text className='text-red-700 text-3xl'>Help me God</Text>
-    </View>
     
+        <FlatList data={products} renderItem={({item}) => (
+            <ProductListItem product = {item} />
+        )}/>
   );
 }
