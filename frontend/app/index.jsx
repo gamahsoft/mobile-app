@@ -1,17 +1,27 @@
-import {FlatList} from 'react-native'
+import { FlatList, useWindowDimensions } from "react-native";
 
-import products from '../assets/products.json'
-import ProductListItem from '@/components/ProductListItems';
-import { Button, ButtonText } from '@/components/ui/button';
+import products from "../assets/products.json";
+import ProductListItem from "@/components/ProductListItems";
+import { Button, ButtonText } from "@/components/ui/button";
+import { useBreakpointValue } from "@/components/ui/utils/use-break-point-value";
 
 export default function HomeScreen() {
-return (
-    // <Button>
-    //     <ButtonText>Press me!</ButtonText>
-    // </Button>
-    
-        <FlatList data={products} numColumns={2} contentContainerClassName="gap-2" columnWrapperClassName="gap-2" renderItem={({item}) => (
-            <ProductListItem product = {item} />
-        )}/>
+  //   const { width } = useWindowDimensions();
+  //   const numColumns = width > 700 ? 3 : 2;
+  const numColumns = useBreakpointValue({
+    default: 2,
+    sm: 3,
+    xl: 4,
+  });
+
+  return (
+    <FlatList
+      key={numColumns}
+      data={products}
+      numColumns={numColumns}
+      contentContainerClassName="gap-2 bg-red-300 max-w[960px] mx-auto w-full"
+      columnWrapperClassName="gap-2"
+      renderItem={({ item }) => <ProductListItem product={item} />}
+    />
   );
 }

@@ -1,33 +1,37 @@
-import {Text} from '@/components/ui/text'
-import{Card} from '@/components/ui/card'
-import {Image} from '@/components/ui/image'
-import {Box} from '@/components/ui/box'
-import { VStack } from '@/components/ui/vstack'
-import {Button, ButtonText} from '@/components/ui/button'
-import { Heading } from '@/components/ui/heading'
+import { Text } from "@/components/ui/text";
+import { Card } from "@/components/ui/card";
+import { Image } from "@/components/ui/image";
+import { Box } from "@/components/ui/box";
+import { VStack } from "@/components/ui/vstack";
+import { Button, ButtonText } from "@/components/ui/button";
+import { Heading } from "@/components/ui/heading";
 
-import { useLocalSearchParams } from 'expo-router'
+import { useLocalSearchParams, Stack } from "expo-router";
 
-import products from '@/assets/products.json'
+import products from "@/assets/products.json";
 
-export default function ProductDetailsScreen () {
+export default function ProductDetailsScreen() {
+  const { id } = useLocalSearchParams();
+  const product = products.find((p) => p.id === Number(id));
 
-    const {id} = useLocalSearchParams()
-    const product = products.find((p) => p.id === Number(id))
+  if (!product) {
+    return <Text>Product not found: {id}</Text>;
+  }
 
-    if (!product) {
+  return (
+    <Box className="p-3 flex-1 items-center">
+      <Stack.Screen
+        name="index"
+        options={{ title: product.name }}
+      ></Stack.Screen>
 
-        return<Text>Product not found: {id}</Text>
-    }
-
-    return (<Card className="p-5 rounded-lg max-w-[560px] flex-1">
-        
+      <Card className="p-5 rounded-lg max-w-[960px] w-full flex-1">
         <Image
           source={{
             uri: product.image,
           }}
           className="mb-6 h-[240px] w-full rounded-md aspect-[4/3]"
-          alt= {`${product.name} image`}
+          alt={`${product.name} image`}
           resizeMode="contain"
         />
         <Text className="text-sm font-normal mb-2 text-typography-700">
@@ -37,9 +41,7 @@ export default function ProductDetailsScreen () {
           <Heading size="md" className="mb-4">
             ${product.price}
           </Heading>
-          <Text size="sm">
-           {product.description}
-          </Text>
+          <Text size="sm">{product.description}</Text>
         </VStack>
         <Box className="flex-col sm:flex-row">
           <Button className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1">
@@ -54,5 +56,7 @@ export default function ProductDetailsScreen () {
             </ButtonText>
           </Button>
         </Box>
-      </Card>)
+      </Card>
+    </Box>
+  );
 }
