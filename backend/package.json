@@ -1,0 +1,31 @@
+{
+  "name": "mytemple",
+  "version": "1.0.0",
+  "description": "track non-profit constituents",
+  "keywords": [],
+  "homepage": "https://github.com/gamahsoft/mobile-app#readme",
+  "bugs": {
+    "url": "https://github.com/gamahsoft/mobile-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gamahsoft/mobile-app.git"
+  },
+  "license": "ISC",
+  "author": "Rami R",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --import=tsx --watch --env-file=.env src/index.ts",
+    "build": "tsc"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "tsx": "^4.19.3",
+    "typescript": "^5.7.3"
+  }
+}
