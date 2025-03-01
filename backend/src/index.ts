@@ -1,6 +1,6 @@
 import express, { json, urlencoded } from "express";
-import productsRouter from "./routes/products/index";
-import authRoutes from "./routes/auth/index";
+import productsRouter from "./routes/products/index.js";
+import authRoutes from "./routes/auth/index.js";
 
 //order defined matters. these are middleware functions to encode data in the url body
 const app = express();
