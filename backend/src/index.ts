@@ -1,4 +1,5 @@
 import express, { json, urlencoded } from "express";
+import cors from "cors";
 import productsRouter from "./routes/products/index.js";
 import authRouter from "./routes/auth/index.js";
 import orderRouter from "./routes/orders/index.js";
@@ -8,6 +9,12 @@ import serverless from "serverless-http";
 const app = express();
 app.use(urlencoded({ extended: false }));
 app.use(json());
+app.use(
+  cors({
+    origin: "http://localhost:8081",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 const port = 3000;
 
