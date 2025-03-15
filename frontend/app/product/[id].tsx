@@ -10,12 +10,16 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { fetchProductById } from "@/api/products";
 import { ActivityIndicator } from "react-native";
-// import { useCart } from '@/store/cartStore';
+import { useCart } from "@/store/cartStore";
+import CardTitle from "react-native-paper/lib/typescript/components/Card/CardTitle";
 
 export default function ProductDetailsScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
 
-  // const addProduct = useCart((state) => state.addProduct);
+  const addProduct = useCart((state) => state.addProduct);
+
+  // const carItems = useCart((state) => state.items);
+  // console.log(JSON.stringify(carItems, null, 2));
 
   const {
     data: product,
@@ -26,9 +30,9 @@ export default function ProductDetailsScreen() {
     queryFn: () => fetchProductById(Number(id)),
   });
 
-  // const addToCart = () => {
-  //   addProduct(product);
-  // };
+  const addToCart = () => {
+    addProduct(product);
+  };
 
   if (isLoading) {
     return <ActivityIndicator />;
@@ -62,7 +66,7 @@ export default function ProductDetailsScreen() {
         </VStack>
         <Box className="flex-col sm:flex-row">
           <Button
-            // onPress={addToCart}
+            onPress={addToCart}
             className="px-4 py-2 mr-0 mb-3 sm:mr-3 sm:mb-0 sm:flex-1"
           >
             <ButtonText size="sm">Add to cart</ButtonText>

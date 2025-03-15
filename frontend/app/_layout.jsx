@@ -2,16 +2,35 @@ import "@/global.css";
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
 import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
 
-import { Stack } from "expo-router";
+import { Link, Stack } from "expo-router";
+
+import { Icon } from "@/components/ui/icon";
+import { ShoppingCart, User } from "lucide-react-native";
+import { Pressable } from "react-native";
+import { useCart } from "@/store/cartStore";
+import { Text } from "@/components/ui/text";
+// import { useAuth } from '@/store/authStore';
 
 // Create a Client
 const queryClient = new QueryClient();
 
 export default function RootLayout() {
+  const cartItemsNum = useCart((state) => state.items.length);
   return (
     <QueryClientProvider client={queryClient}>
       <GluestackUIProvider>
-        <Stack>
+        <Stack
+          screenOptions={{
+            headerRight: () => (
+              <Link href={"/cart"} asChild>
+                <Pressable className="flex-row gap-2">
+                  <Icon as={ShoppingCart} />
+                  <Text>{cartItemsNum}</Text>
+                </Pressable>
+              </Link>
+            ),
+          }}
+        >
           <Stack.Screen
             name="index"
             options={{ title: "My Temple" }}

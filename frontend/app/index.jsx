@@ -8,6 +8,7 @@ import { useBreakpointValue } from "@/components/ui/utils/use-break-point-value"
 // import { useEffect } from "react";
 import { listProducts } from "@/api/products";
 import { ActivityIndicator } from "react-native-paper";
+import { Text } from "@/components/ui/text";
 
 export default function HomeScreen() {
   //old way of retrieving data on page load
