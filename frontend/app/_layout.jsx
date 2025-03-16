@@ -29,6 +29,13 @@ export default function RootLayout() {
                 </Pressable>
               </Link>
             ),
+            headerLeft: () => (
+              <Link href={"/login"} asChild>
+                <Pressable className="flex-row gap-2">
+                  <Icon as={User} />
+                </Pressable>
+              </Link>
+            ),
           }}
         >
           <Stack.Screen
