@@ -4,6 +4,7 @@ import productsRouter from "./routes/products/index.js";
 import authRouter from "./routes/auth/index.js";
 import orderRouter from "./routes/orders/index.js";
 import serverless from "serverless-http";
+import stripeRoutes from "./routes/stripe/index.js";
 
 //order defined matters. these are middleware functions to encode data in the url body
 const app = express();
@@ -25,6 +26,7 @@ app.get("/", (req, res) => {
 app.use("/products", productsRouter);
 app.use("/auth", authRouter);
 app.use("/orders", orderRouter);
+app.use("/stripe", stripeRoutes);
 
 if (`${process.env.NODE_ENV == "dev"}`) {
   app.listen(port, () => {
